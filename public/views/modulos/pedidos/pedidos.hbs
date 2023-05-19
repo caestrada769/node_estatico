@@ -1,0 +1,66 @@
+{{> header}}
+
+<div class="container- mt-5">
+  <div class="row">
+    <div class="col-8 offset-lg-2">
+      <div class="card">
+        <div class="container-fluid mt-3">
+          
+              <a href="/crearPedido">
+                <button class="btn btn-success float-end" style="margin-right: 10px;">NUEVO</button>
+              </a>
+              <input type="text" class="search-input float-start" placeholder="Buscar pedidos..." style="margin-left: 10px;">
+              <button type="submit" class="btn btn-primary float-start"><i class="fa-solid fa-search"></i></button>
+
+        </div>
+        <div class="card-body text-center">
+          <h1>Pedidos</h1>
+          <br>
+          
+          
+          <div class="table-responsive mt-3">
+            <table class="table table-striped ">
+
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">NombCliente</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">FechaEntrega</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each lista_pedidos}}
+                <tr>
+                  <td>{{id}}</td>
+                  <td>{{nombCliente}}</td>
+                  <td>{{producto}}</td>
+                  <td>{{cantidad}}</td>
+                  <td>{{precio}}</td>
+                  <td>{{fechaEntrega}}</td>
+                  <td>
+                    <button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                    <button class="btn btn-success"><i class="fa-solid fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+          </div>
+          {{/each}}
+
+
+          </tbody>
+          </table>
+          <div class="botones">
+            <button class="btn btn-success float-end"><i class="fa-solid fa-file-pdf"></i></button>
+            <button class="btn btn-info float-end"><i class="fa-sharp fa-solid fa-file-excel"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{> footer}}

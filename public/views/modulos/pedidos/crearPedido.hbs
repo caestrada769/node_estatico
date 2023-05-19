@@ -1,0 +1,42 @@
+
+{{> header}}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">CREAR PEDIDO</span>
+                    <form class="mt-3">
+                        <div class="mb-3">
+                            <input type="text" id="NombCliente" class="from-control from-contol-lg" placeholder="NombCliente">                          
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="Producto" class="from-control from-contol-lg" placeholder="Producto">                          
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" id="Cantidad" class="from-control from-contol-lg" placeholder="Cantidad">                            
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" id="Precio" class="from-control from-contol-lg" placeholder="Precio">                           
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="FechaEntrega" class="from-control from-contol-lg" placeholder="FechaEntrega">                           
+                        </div>
+                        <label class="switch">
+                                <input type="checkbox" id="toggleBtn">
+                                <span class="slider round"></span>
+                        </label>
+                        <div class="mb-3">
+                            <button class="btn btn-secondary"> VOLVER</button>
+                            <button id="btnRegistrarPedido"  type="button" class="btn btn-success">ACEPTAR</button>
+                        </div>
+                    </form>
+                    <div class="erroresPedidos" id="erroresPedidos"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/pedido.js"></script>
+{{> footer}}
