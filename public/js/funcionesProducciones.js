@@ -1,6 +1,6 @@
 //url de la api.
 //Al desplegarla en el servidor colocar la api del servidor
-const url = 'http://localhost:8080/api/produccion'
+const url = 'https://api-backend-91n0.onrender.com/api/produccion'
 
 const listarDatos = async() => {
     let respuesta = ''
