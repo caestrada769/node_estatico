@@ -27,6 +27,15 @@
                   <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese la descripción de la categoría" required></textarea>
                   <span id="descripcionError" class="erroresFormulario"></span>
                 </div>
+                <div class="form-group">
+                  <label>Estado</label>
+                  <select class="custom-select" id="estado">
+                    <option value="" disabled selected>Elegir Estado</option>
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                  </select>
+                  <span id="estadoError" class="erroresFormulario"></span>
+                </div>
                 <div class="form-group text-center">
                   <button id="btnCrearCategoria" type="button" class="btn btn-primary">Crear</button>
                   <a href="/categorias"><button type="button" class="btn btn-secondary">Cancelar</button></a>

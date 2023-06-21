@@ -31,111 +31,28 @@
           <table class="table table-striped Categorias">
               <thead>
                   <tr>
-                      <th style="width: 1%">
-                          Código
-                      </th>
-                      <th style="width: 20%">
+                      <th style="width: 15%">
                           Nombre Producto
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 15%">
                           Categoría
                       </th>
                       <th style="width: 30%">
                           Descripción
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 15%">
                           Precio
                       </th>
                       <th style="width: 8%" class="text-center">
                           Estado
                       </th>
-                      <th style="width: 8%" class="text-center">
+                      <th style="width: 20%" class="text-center">
                           Acciones
                       </th>
                   </tr>
               </thead>
-              <tbody>
-                  <tr>
-                      <td>
-                          P1
-                      </td>
-                      <td>
-                          <a>
-                              Croissant
-                          </a>
-                      </td>
-                      <td>
-                          <a>
-                              Panaderia
-                          </a>
-                      </td>
-                      <td>
-                          <a>
-                              "Es el producto más tradicional de la panadería Francesa. En Parisina te ofrecemos una amplia 
-                              variedad en los sabores y rellenos "Mantequilla, Espinaca, Tomate seco"
-
-                          </a>
-                      </td>
-                      <td>
-                          <a>
-                              6000
-                          </a>
-                      </td>
-                      <td>
-                        <div class="custom-control custom-switch text-center">
-                          <input type="checkbox" class="custom-control-input" id="check1" checked>
-                          <label class="custom-control-label" for="check1"></label>
-                        </div>
-                      </td>
-                      <td class="project-actions text-center">
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                      </td>
-                      
-                  </tr>
-
-                  <tr>
-                      <td>
-                          P2
-                      </td>
-                      <td>
-                          <a>
-                              Brownies
-                          </a>
-                      </td>
-                      <td>
-                          <a>
-                              Reposteria
-                          </a>
-                      </td>
-                      <td>
-                          <a>
-                              Melcochudo y con mucho chocolate.
-
-                          </a>
-                      </td>
-                      <td>
-                          <a>
-                              3000
-                          </a>
-                      </td>
-                      <td>
-                        <div class="custom-control custom-switch text-center">
-                          <input type="checkbox" class="custom-control-input" id="check2" checked>
-                          <label class="custom-control-label" for="check2"></label>
-                        </div>
-                      </td>
-                      <td class="project-actions text-center">
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                      </td>
-                      
-                  </tr>
-
+              <tbody id="contenido">
+                 
               </tbody>
           </table>
         </div>
@@ -145,9 +62,63 @@
 
     </section>
     <!-- /.content -->
+ 
+     <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST">
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese el nombre del producto" required>
+                  <span id="nombreError" class="erroresFormulario"></span>
+                </div>
+                <div class="form-group">
+                  <label for="categoria">Categoría</label>
+                  <select id="categoria" name="categoria" class="form-control" required>
+                    <option value="">Seleccione una categoría</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="descripcion">Descripción</label>
+                  <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese la descripción del producto" required></textarea>
+                  <span id="descripcionError" class="erroresFormulario"></span>
+                </div>
+                <div class="form-group">
+                  <label for="precio">Precio</label>
+                  <input type="text" name="precio" id="precio" class="form-control" placeholder="Ingrese el precio del producto" required>
+                  <span id="precioError" class="erroresFormulario"></span>
+                </div>
+                <div class="form-group">
+                  <label>Estado</label>
+                  <select class="custom-select" id="estado">
+                    <option value="" disabled selected>Elegir Estado</option>
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                  </select>
+                  <span id="estadoError" class="erroresFormulario"></span>
+                </div>
+              </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button id="btnActualizarProducto" type="button" class="btn btn-primary">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>
   <!-- /.content-wrapper -->
 
-
+  <script src="js/funcionesProductos.js"></script>
+  <script> listarDatos() </script>
 
 {{> footer }}
