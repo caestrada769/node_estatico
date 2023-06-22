@@ -62,7 +62,7 @@ const validarFormularioProductos = () =>{
 
 //url de la api.
 //Al desplegarla en el servidor colocar la api del servidor
-const url = 'https://api-backend-91n0.onrender.com/api/producto'
+const url = 'http://localhost:8080/api/producto'
 
 const listarDatos = async() => {
     let respuesta = ''
@@ -95,7 +95,7 @@ const listarDatos = async() => {
 
 const obtenerCategorias = async () => {
     try {
-      const resp = await fetch('https://api-backend-91n0.onrender.com/api/categoria');
+      const resp = await fetch('http://localhost:8080/api/categoria');
       if (resp.ok) {
         const data = await resp.json();
         return data.categorias;

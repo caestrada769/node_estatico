@@ -1,6 +1,6 @@
 //url de la api.
 //Al desplegarla en el servidor colocar la api del servidor
-const url = 'https://api-backend-91n0.onrender.com/api/produccion'
+const url = 'http://localhost:8080/api/produccion'
 
 const listarDatos = async() => {
     let respuesta = ''
@@ -12,8 +12,8 @@ const listarDatos = async() => {
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then((resp) => resp.json()) //obtener respuesta y convertirla a json
-    .then(function(data) {
-        let listaProducciones = data.producciones
+    .then(function(data) { 
+        let listaProducciones = data.produccionesArray
         return listaProducciones.map(function(produccion) {
             respuesta += `<tr><td>${produccion.area}</td>`+
                     `<td>${produccion.producto}</td>`+
@@ -21,34 +21,13 @@ const listarDatos = async() => {
                     `<td>${produccion.fecha_actualizacion.substring(0,16)}</td>`+
                     `<td>${produccion.estado}</td>`+
                     `<td>${produccion.fecha_entrega.substring(0,10)}</td>`+
-                    `<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick='editar(${JSON.stringify(produccion)})'>Editar</button> 
-                    <button type="button" class="btn btn-danger" onclick='eliminar(${JSON.stringify(produccion)})'>Eliminar</button></td></tr>`
+                    `<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick='editar(${JSON.stringify(produccion)})'>Editar</button></td></tr>`
             body.innerHTML = respuesta
 
         })
     })
 }
 
-
-const registrar = async () => {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      });
-  
-      const json = await response.json();
-      console.log(json.msg);
-      Swal.fire(json.msg, '', 'success').then(() => {
-        location.reload();//Para recargar la pagina
-    });
-    } catch (error) {
-      console.error('Ocurrió un error al registrar:', error);
-      Swal.fire('Error al registrar', '', 'error');
-    }
-  };
-  
 
 const editar = (produccion) => {
     document.getElementById('area').value =''
@@ -70,20 +49,24 @@ const editar = (produccion) => {
 }
 
 const actualizar = async () => {
-    let _id = document.getElementById('idProduccion').value;
+
+    const url_d_pedido = 'http://localhost:8080/api/d_pedido'
+
+    let _producto = document.getElementById('producto').value;
+    let _fecha_entrega = document.getElementById('fecha_entrega').value;
     let _estado = document.getElementById('estado').value;
-    let _fecha_actualizacion = new Date()
+
   
-    let _produccion = {
-      _id: _id,
+    let _d_pedido = {
+      producto: _producto,
+      fecha_entrega: _fecha_entrega,
       estado: _estado,
-      fecha_actualizacion: _fecha_actualizacion,
     };
   
-    fetch(url, {
+    fetch(url_d_pedido, {
       method: 'PUT',
       mode: 'cors',
-      body: JSON.stringify(_produccion),
+      body: JSON.stringify(_d_pedido),
       headers: { 'Content-type': 'application/json; charset=UTF-8' }
     })
       .then((resp) => resp.json())
@@ -93,46 +76,6 @@ const actualizar = async () => {
         });
       });
   };
-  
-
-const eliminar = (id) => {
-    Swal.fire({
-        title: '¿Está seguro de eliminar el producto?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Eliminar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            let produccion = {
-                _id: id
-            };
-            fetch(url, {
-                method: 'DELETE',
-                mode: 'cors',
-                body: JSON.stringify(produccion),
-                headers: { "Content-type": "application/json; charset=UTF-8" }
-            })
-            .then((resp) => resp.json())
-            .then(json => {
-                Swal.fire(
-                    json.msg,//mensaje que retorna la API
-                    '',
-                    'success'
-                ).then(() => {
-                    location.reload();//Para recargar la pagina
-                });
-            });
-        }
-    });
-};
-
-
-if(document.querySelector('#btnActualizarOrdenes')){
-    document.querySelector('#btnActualizarOrdenes').addEventListener('click',() => registrar())
-}
 
 
 document.querySelector('#btnActualizarEstadoProduccion').addEventListener('click',() => actualizar())

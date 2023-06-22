@@ -44,7 +44,7 @@ const validarFormularioCategorias = () =>{
 
 //url de la api.
 //Al desplegarla en el servidor colocar la api del servidor
-const url = 'https://api-backend-91n0.onrender.com/api/categoria'
+const url = 'http://localhost:8080/api/categoria'
 
 const listarDatos = async() => {
     let respuesta = ''
@@ -126,7 +126,7 @@ const actualizar = async () => {
         fetch(url, {
             method: 'PUT',
             mode: 'cors',
-            body: JSON.stringify(_categoria),//Convertir el objeto usuario a JSON
+            body: JSON.stringify(_categoria),//Convertir el objeto categoria a JSON
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
         .then((resp) => resp.json()) //obtener respuesta y convertirla a json
