@@ -44,7 +44,7 @@ const validarFormularioCategorias = () =>{
 
 //url de la api.
 //Al desplegarla en el servidor colocar la api del servidor
-const url = 'http://localhost:8080/api/categoria'
+const url = 'https://api-backend-91n0.onrender.com/api/categoria'
 
 const listarDatos = async() => {
     let respuesta = ''
